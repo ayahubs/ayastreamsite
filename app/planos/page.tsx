@@ -1,0 +1,7 @@
+import type {Metadata} from 'next';
+import {Plans} from '@/components/plans';
+import {PageHero} from '@/components/page-hero';
+import {getPublicConfig} from '@/lib/api';
+import {ScreenGallery} from '@/components/screen-gallery';
+export const metadata: Metadata = {title:'Planos',description:'Conheça os planos mensal, trimestral e anual do Ayastream.'};
+export default async function Page(){const config=await getPublicConfig();return <><PageHero variant="plans" eyebrow="PLANOS AYASTREAM" title="Um plano para cada momento.">Escolha o período ideal e confirme sua ativação diretamente com nossa equipe.</PageHero><section className="section container"><Plans config={config}/></section><section className="section visual-section"><div className="container"><div className="section-heading"><span className="eyebrow">INCLUSO NA EXPERIÊNCIA</span><h2>Um aplicativo completo<br/>em qualquer plano.</h2><p>Catálogo visual, programação, episódios e continuidade reunidos na mesma interface.</p></div><ScreenGallery compact/></div></section><section className="section container"><div className="info-panel"><h2>O que acontece depois?</h2><ol><li>Você escolhe o plano ou solicita um teste.</li><li>Nossa equipe confirma disponibilidade, pagamento e compatibilidade.</li><li>Você recebe as orientações para configurar o aplicativo.</li></ol><p>Nenhuma cobrança é realizada automaticamente pelo site.</p></div></section></>}

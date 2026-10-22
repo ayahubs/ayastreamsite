@@ -1,0 +1,9 @@
+import type {Metadata} from 'next';
+import Link from 'next/link';
+import {Download, Monitor, Smartphone} from 'lucide-react';
+import {AppShowcase} from '@/components/app-showcase';
+import {PageHero} from '@/components/page-hero';
+import {ScreenGallery} from '@/components/screen-gallery';
+import {getPublicConfig} from '@/lib/api';
+export const metadata:Metadata={title:'Aplicativos',description:'Baixe o Ayastream para Android e Windows.'};
+export default async function Page(){const c=await getPublicConfig();return <><PageHero variant="apps" eyebrow="APLICATIVOS PRÓPRIOS" title="A mesma experiência, em todas as suas telas.">Escolha sua plataforma e aproveite uma navegação criada para entretenimento.</PageHero><section className="section container"><AppShowcase/></section><section className="section visual-section"><div className="container"><div className="section-heading"><span className="eyebrow">TELAS DO APLICATIVO</span><h2>Uma interface que<br/>não atrapalha seu momento.</h2><p>Navegue, encontre, continue e assista com poucos toques.</p></div><ScreenGallery compact/></div></section><section className="section container"><div className="download-grid"><article><Smartphone/><div><h2>Ayastream para Android</h2><p>Celulares e tablets Android. Instalação simples e player nativo.</p>{c.androidUrl?<a className="button" href={c.androidUrl} rel="noopener noreferrer"><Download/> Baixar aplicativo</a>:<span className="soon">Em breve na Google Play</span>}</div></article><article><Monitor/><div><h2>Ayastream para Windows</h2><p>Compatível com Windows 10 e 11, arquitetura 64 bits.</p>{c.windowsUrl?<a className="button" href={c.windowsUrl} rel="noopener noreferrer"><Download/> Baixar para Windows</a>:<span className="soon">Download em breve</span>}</div></article></div><div className="center-actions"><Link className="text-link" href="/como-funciona">Veja como configurar o aplicativo →</Link></div></section></>}

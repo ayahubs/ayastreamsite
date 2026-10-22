@@ -1,0 +1,6 @@
+import type {Metadata} from 'next';
+import {LeadForm} from '@/components/lead-form';
+import {PageHero} from '@/components/page-hero';
+import {getPublicConfig} from '@/lib/api';
+export const metadata: Metadata = {title:'Teste grátis',description:'Solicite um teste do Ayastream e receba atendimento pelo WhatsApp.'};
+export default async function Page({searchParams}:{searchParams:Promise<{plano?:string}>}){const [config,params]=await Promise.all([getPublicConfig(),searchParams]);return <><PageHero variant="trial" eyebrow="EXPERIMENTE" title="Veja como o Ayastream funciona.">Preencha os dados abaixo. O teste de até {config.trialHours} horas depende de disponibilidade e será confirmado pelo atendimento.</PageHero><section className="section container form-section"><div><span className="eyebrow">SEM COBRANÇA AUTOMÁTICA</span><h2>Seu pedido, acompanhado por uma pessoa.</h2><p>Verificamos a compatibilidade do seu dispositivo e orientamos toda a configuração.</p><ul className="clean-list"><li>Atendimento pelo WhatsApp</li><li>Aplicativo para Android ou Windows</li><li>Ajuda na configuração inicial</li></ul></div><LeadForm defaultPlan={params.plano} whatsapp={config.whatsapp} message={config.whatsappMessage}/></section></>}
