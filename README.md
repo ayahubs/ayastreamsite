@@ -11,12 +11,12 @@ Site comercial do Ayastream, separado dos aplicativos Android/Windows e integrad
 ## EasyPanel
 
 - Build method: Dockerfile
-- Porta: `3000`
+- Porta: `80`
 - Variáveis de build e runtime:
   - `NEXT_PUBLIC_SITE_URL=https://seu-dominio.com.br`
   - `NEXT_PUBLIC_API_URL=https://url-da-api`
 
-O container expõe `/api/health` para health check.
+O container escuta em `0.0.0.0:80` e expõe `/api/health` para health check. No EasyPanel, configure o domínio para encaminhar à porta `80`.
 
 ## Integração comercial
 
